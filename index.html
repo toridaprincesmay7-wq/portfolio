@@ -1,0 +1,4472 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jasmine Antonio | Personal Portfolio</title>
+
+<!-- GOOGLE FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+    --pink:#e83e8c;
+    --pink-dark:#c51f6d;
+    --pink-light:#fff0f7;
+
+    --purple:#8e44ad;
+    --purple-light:#f3e8fa;
+
+    --gold:#d4af37;
+    --gold-light:#f8e9a9;
+
+    --dark:#241724;
+    --dark-2:#342238;
+
+    --white:#ffffff;
+
+    --gray:#716873;
+    --gray-light:#f6f2f5;
+
+    --shadow:
+        0 15px 40px rgba(60,20,60,.10);
+
+    --transition:
+        all .35s ease;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Poppins",sans-serif;
+
+    background:var(--pink-light);
+
+    color:var(--dark);
+
+    overflow-x:hidden;
+
+    transition:var(--transition);
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1f8,
+            #f2e7fa
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+#loader.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+}
+
+.loader-content{
+
+    text-align:center;
+}
+
+.loader-crown{
+
+    font-size:75px;
+
+    animation:
+        crownFloat 1.5s infinite;
+}
+
+.loader-content h2{
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color:var(--pink);
+
+    font-size:35px;
+
+    margin-top:10px;
+}
+
+.loader-content p{
+
+    color:var(--gray);
+
+    font-size:14px;
+}
+
+.loader-bar{
+
+    width:200px;
+
+    height:5px;
+
+    background:#f0c9dc;
+
+    border-radius:20px;
+
+    margin:20px auto;
+
+    overflow:hidden;
+}
+
+.loader-progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--purple),
+            var(--gold)
+        );
+
+    animation:
+        loading 2s forwards;
+}
+
+@keyframes loading{
+
+    to{
+        width:100%;
+    }
+
+}
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+#scrollProgress{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    height:4px;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--purple),
+            var(--gold)
+        );
+
+    z-index:10000;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    padding:18px 7%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    z-index:5000;
+
+    background:
+        rgba(255,255,255,.82);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.5);
+
+    transition:var(--transition);
+}
+
+.logo{
+
+    font-family:
+        "DM Serif Display",
+        serif;
+
+    font-size:30px;
+
+    color:var(--pink);
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:25px;
+}
+
+.nav-links a{
+
+    font-size:14px;
+
+    font-weight:500;
+
+    position:relative;
+
+    transition:var(--transition);
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-7px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--pink);
+
+    transition:var(--transition);
+}
+
+.nav-links a:hover{
+
+    color:var(--pink);
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+}
+
+.nav-controls{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+}
+
+.icon-button{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--pink);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:var(--transition);
+}
+
+.icon-button:hover{
+
+    transform:
+        scale(1.08)
+        rotate(10deg);
+}
+
+.menu-button{
+
+    display:none;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:100vh;
+
+    padding:
+        140px
+        8%
+        90px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:80px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(232,62,140,.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(142,68,173,.15),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #fff8fc,
+            #f8f0fb
+        );
+}
+
+.hero-decoration{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    pointer-events:none;
+}
+
+.decoration-one{
+
+    width:350px;
+
+    height:350px;
+
+    background:
+        rgba(232,62,140,.07);
+
+    top:-100px;
+
+    left:-120px;
+}
+
+.decoration-two{
+
+    width:500px;
+
+    height:500px;
+
+    background:
+        rgba(142,68,173,.07);
+
+    right:-180px;
+
+    bottom:-250px;
+}
+
+.hero-text{
+
+    width:55%;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.eyebrow{
+
+    color:var(--pink);
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+}
+
+.hero h1{
+
+    font-family:
+        "DM Serif Display",
+        serif;
+
+    font-size:
+        clamp(55px,7vw,90px);
+
+    line-height:1;
+
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+
+    color:var(--pink);
+}
+
+.hero-title{
+
+    color:var(--purple);
+
+    font-size:24px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+}
+
+.hero-description{
+
+    max-width:700px;
+
+    color:var(--gray);
+
+    font-size:16px;
+
+    line-height:1.9;
+}
+
+.typing{
+
+    color:var(--pink);
+
+    font-weight:700;
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:32px;
+}
+
+.btn{
+
+    padding:
+        14px
+        26px;
+
+    border-radius:40px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+}
+
+.btn-primary{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--purple)
+        );
+
+    box-shadow:
+        0 12px 25px
+        rgba(232,62,140,.25);
+}
+
+.btn-primary:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 18px 35px
+        rgba(232,62,140,.35);
+}
+
+.btn-outline{
+
+    border:
+        2px solid
+        var(--pink);
+
+    color:var(--pink);
+}
+
+.btn-outline:hover{
+
+    background:var(--pink);
+
+    color:white;
+
+    transform:
+        translateY(-4px);
+}
+
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.hero-photo-wrapper{
+
+    width:390px;
+
+    height:500px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.photo-ring-one{
+
+    position:absolute;
+
+    inset:-15px;
+
+    border:
+        3px solid
+        var(--gold);
+
+    border-radius:
+        230px
+        230px
+        40px
+        40px;
+
+    transform:rotate(5deg);
+}
+
+.photo-ring-two{
+
+    position:absolute;
+
+    inset:-28px;
+
+    border:
+        1px dashed
+        rgba(232,62,140,.55);
+
+    border-radius:
+        240px
+        240px
+        50px
+        50px;
+
+    transform:rotate(-4deg);
+}
+
+
+/*
+=========================================================
+YOUR HERO IMAGE
+
+IMPORTANT:
+
+Put your photo in the same folder as index.html.
+
+Example:
+
+Jasmine-Portfolio/
+│
+├── index.html
+└── jasmine.jpg
+
+Then this line works:
+
+src="jasmine.jpg"
+
+If your photo is named:
+
+JasminePhoto.png
+
+change it to:
+
+src="JasminePhoto.png"
+=========================================================
+*/
+
+.hero-photo{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:
+        220px
+        220px
+        35px
+        35px;
+
+    position:relative;
+
+    z-index:1;
+
+    box-shadow:
+        0 25px 60px
+        rgba(80,30,80,.22);
+}
+
+.photo-container{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:
+        220px
+        220px
+        35px
+        35px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5c8dd,
+            #dfc4ee
+        );
+
+    position:relative;
+}
+
+.photo-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.35),
+            transparent 45%
+        );
+
+    pointer-events:none;
+
+    z-index:2;
+}
+
+.photo-caption{
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:25px;
+
+    right:25px;
+
+    z-index:3;
+
+    color:white;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.4);
+}
+
+.photo-caption h3{
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:27px;
+}
+
+.photo-caption p{
+
+    font-size:13px;
+
+    margin-top:3px;
+}
+
+.floating-badge{
+
+    position:absolute;
+
+    padding:
+        13px
+        18px;
+
+    background:white;
+
+    color:var(--pink);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    font-weight:600;
+
+    z-index:5;
+
+    animation:
+        badgeFloat 3s infinite ease-in-out;
+}
+
+.badge-top{
+
+    top:45px;
+
+    right:-70px;
+}
+
+.badge-bottom{
+
+    bottom:40px;
+
+    left:-70px;
+
+    animation-delay:1s;
+}
+
+@keyframes badgeFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+section{
+
+    padding:
+        100px 8%;
+}
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+}
+
+.section-label{
+
+    display:block;
+
+    color:var(--pink);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.section-header h2{
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(38px,5vw,55px);
+
+    margin-top:8px;
+}
+
+.section-header p{
+
+    max-width:700px;
+
+    margin:
+        15px
+        auto
+        0;
+
+    color:var(--gray);
+
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+
+    background:white;
+}
+
+.about-container{
+
+    max-width:1150px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        1.1fr
+        .9fr;
+
+    gap:70px;
+
+    align-items:center;
+}
+
+.about-text p{
+
+    color:var(--gray);
+
+    line-height:1.9;
+
+    margin-bottom:20px;
+}
+
+.about-text strong{
+
+    color:var(--pink);
+}
+
+.quote{
+
+    margin-top:25px;
+
+    padding:25px;
+
+    background:
+        var(--pink-light);
+
+    border-left:
+        5px solid
+        var(--pink);
+
+    border-radius:
+        0
+        18px
+        18px
+        0;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:20px;
+
+    font-style:italic;
+}
+
+.info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:16px;
+}
+
+.info-box{
+
+    padding:23px;
+
+    border-radius:20px;
+
+    background:var(--gray-light);
+
+    transition:var(--transition);
+}
+
+.info-box:hover{
+
+    transform:
+        translateY(-6px);
+
+    background:
+        var(--pink-light);
+}
+
+.info-icon{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+}
+
+.info-box strong{
+
+    display:block;
+
+    color:var(--pink);
+
+    margin-bottom:5px;
+}
+
+.info-box span{
+
+    color:var(--gray);
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
+
+.achievements{
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2f8,
+            #f4eafb
+        );
+}
+
+.stats-grid{
+
+    max-width:1150px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:20px;
+}
+
+.stat-card{
+
+    background:
+        rgba(255,255,255,.9);
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+}
+
+.stat-card:hover{
+
+    transform:
+        translateY(-10px);
+}
+
+.stat-icon{
+
+    font-size:45px;
+
+    margin-bottom:12px;
+}
+
+.stat-number{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    color:var(--pink);
+}
+
+.stat-card p{
+
+    color:var(--gray);
+
+    font-weight:500;
+}
+
+
+/* =========================================================
+   TALENTS
+========================================================= */
+
+.talents{
+
+    background:white;
+}
+
+.talent-grid{
+
+    max-width:1150px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:25px;
+}
+
+.talent-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:white;
+
+    border:
+        1px solid
+        #eee4ec;
+
+    box-shadow:
+        0 10px 30px
+        rgba(50,20,50,.06);
+
+    transition:var(--transition);
+}
+
+.talent-card:hover{
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(50,20,50,.12);
+}
+
+.talent-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+        var(--pink-light);
+
+    right:-45px;
+
+    top:-45px;
+}
+
+.talent-icon{
+
+    font-size:48px;
+
+    margin-bottom:18px;
+
+    position:relative;
+}
+
+.talent-card h3{
+
+    color:var(--purple);
+
+    margin-bottom:12px;
+}
+
+.talent-card p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   JOURNALISM
+========================================================= */
+
+.journalism{
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8effb,
+            #fff2f8
+        );
+}
+
+.journalism-container{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.journalism-container p{
+
+    color:var(--gray);
+
+    line-height:1.9;
+
+    margin-bottom:20px;
+}
+
+.skills{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:30px;
+}
+
+.skill{
+
+    padding:
+        11px
+        19px;
+
+    background:white;
+
+    border-radius:30px;
+
+    color:var(--pink);
+
+    font-weight:600;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.05);
+}
+
+
+/* =========================================================
+   PAGEANT
+========================================================= */
+
+.pageant{
+
+    color:white;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(246,214,117,.09),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #241526,
+            #49264e
+        );
+}
+
+.pageant .section-label{
+
+    color:var(--gold-light);
+}
+
+.pageant .section-header h2{
+
+    color:white;
+}
+
+.pageant-container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        .8fr
+        1.2fr;
+
+    gap:70px;
+
+    align-items:center;
+}
+
+.crown-area{
+
+    text-align:center;
+}
+
+.crown{
+
+    font-size:150px;
+
+    display:inline-block;
+
+    filter:
+        drop-shadow(
+            0 15px 20px
+            rgba(246,214,117,.25)
+        );
+
+    animation:
+        crownFloat 3s infinite ease-in-out;
+}
+
+.title-card{
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(246,214,117,.3);
+
+    backdrop-filter:blur(10px);
+}
+
+.title-year{
+
+    color:var(--gold-light);
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+}
+
+.title-card h3{
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color:var(--gold-light);
+
+    font-size:42px;
+
+    margin:
+        10px
+        0
+        18px;
+}
+
+.title-card p{
+
+    color:#eee;
+
+    line-height:1.9;
+}
+
+
+/* =========================================================
+   LEADERSHIP TIMELINE
+========================================================= */
+
+.leadership{
+
+    background:white;
+}
+
+.timeline{
+
+    max-width:950px;
+
+    margin:auto;
+
+    position:relative;
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    bottom:0;
+
+    left:50%;
+
+    width:3px;
+
+    background:
+        linear-gradient(
+            var(--pink),
+            var(--purple)
+        );
+
+    transform:
+        translateX(-50%);
+}
+
+.timeline-item{
+
+    width:50%;
+
+    padding:
+        20px
+        45px;
+
+    position:relative;
+}
+
+.timeline-item:nth-child(even){
+
+    margin-left:50%;
+}
+
+.timeline-dot{
+
+    position:absolute;
+
+    top:32px;
+
+    right:-9px;
+
+    width:18px;
+
+    height:18px;
+
+    background:var(--pink);
+
+    border:
+        4px solid white;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(232,62,140,.15);
+}
+
+.timeline-item:nth-child(even)
+.timeline-dot{
+
+    left:-9px;
+
+    right:auto;
+}
+
+.timeline-card{
+
+    background:
+        var(--gray-light);
+
+    padding:27px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.05);
+}
+
+.timeline-card h3{
+
+    color:var(--pink);
+
+    margin-bottom:10px;
+}
+
+.timeline-card p{
+
+    color:var(--gray);
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   ORGANIZATIONS
+========================================================= */
+
+.organizations{
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #f4eafb
+        );
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery{
+
+    background:white;
+}
+
+.gallery-grid{
+
+    max-width:1150px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.gallery-item{
+
+    height:300px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5c7dd,
+            #dfc5ee
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:var(--transition);
+}
+
+.gallery-item:hover{
+
+    transform:
+        translateY(-7px);
+}
+
+.gallery-item img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+.gallery-placeholder{
+
+    text-align:center;
+
+    color:#814a70;
+}
+
+.gallery-placeholder div{
+
+    font-size:60px;
+
+    margin-bottom:10px;
+}
+
+.gallery-label{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:17px;
+
+    color:white;
+
+    font-weight:600;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.75)
+        );
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+
+    text-align:center;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(232,62,140,.12),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #fff2f8,
+            #f4e9fa
+        );
+}
+
+.contact-content{
+
+    max-width:750px;
+
+    margin:auto;
+}
+
+.contact-content > p{
+
+    color:var(--gray);
+
+    line-height:1.9;
+}
+
+.contact-button{
+
+    margin-top:30px;
+}
+
+.socials{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    margin-top:30px;
+}
+
+.social{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-weight:700;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--purple)
+        );
+
+    transition:var(--transition);
+}
+
+.social:hover{
+
+    transform:
+        translateY(-6px)
+        rotate(5deg);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    background:#211521;
+
+    color:#ddd;
+
+    text-align:center;
+
+    padding:35px 20px;
+}
+
+footer strong{
+
+    color:var(--gold-light);
+}
+
+.heart{
+
+    color:var(--pink);
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+#backToTop{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--pink);
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:var(--transition);
+
+    z-index:3000;
+}
+
+#backToTop.show{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+#backToTop:hover{
+
+    transform:
+        translateY(-5px);
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:
+        translateY(40px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark{
+
+    --pink-light:#281725;
+
+    --white:#1e171f;
+
+    --dark:#f7eef6;
+
+    --gray:#cbbfcb;
+
+    --gray-light:#2b202d;
+
+    background:#171118;
+
+    color:#f7eef6;
+}
+
+body.dark nav{
+
+    background:
+        rgba(28,20,30,.92);
+}
+
+body.dark .nav-links a{
+
+    color:#f7eef6;
+}
+
+body.dark .hero{
+
+    background:
+
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(232,62,140,.12),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(142,68,173,.15),
+            transparent 30%
+        ),
+
+        #171118;
+}
+
+body.dark .about,
+body.dark .talents,
+body.dark .gallery,
+body.dark .leadership{
+
+    background:#211821;
+}
+
+body.dark .journalism,
+body.dark .achievements,
+body.dark .organizations,
+body.dark .contact{
+
+    background:#1b141d;
+}
+
+body.dark .info-box,
+body.dark .talent-card,
+body.dark .stat-card,
+body.dark .timeline-card{
+
+    background:#2a202c;
+
+    border-color:#3b2d3e;
+}
+
+body.dark .talent-card p,
+body.dark .timeline-card p,
+body.dark .info-box span{
+
+    color:#cbbfcb;
+}
+
+body.dark .gallery-item{
+
+    background:
+        linear-gradient(
+            135deg,
+            #392638,
+            #4a3450
+        );
+}
+
+body.dark #loader{
+
+    background:#171118;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .hero-photo-wrapper{
+
+        width:320px;
+
+        height:420px;
+    }
+
+    .badge-top{
+
+        right:-25px;
+    }
+
+    .badge-bottom{
+
+        left:-25px;
+    }
+
+    .hero-text{
+
+        width:52%;
+    }
+
+}
+
+
+@media(max-width:900px){
+
+    nav{
+
+        padding:
+            15px 6%;
+    }
+
+    .nav-links{
+
+        position:absolute;
+
+        top:75px;
+
+        left:5%;
+
+        width:90%;
+
+        padding:25px;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:20px;
+
+        background:
+            rgba(255,255,255,.96);
+
+        backdrop-filter:blur(20px);
+
+        border-radius:20px;
+
+        box-shadow:var(--shadow);
+
+        display:none;
+    }
+
+    .nav-links.active{
+
+        display:flex;
+    }
+
+    body.dark .nav-links{
+
+        background:
+            rgba(35,25,38,.97);
+    }
+
+    .menu-button{
+
+        display:block;
+    }
+
+    .hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:70px;
+    }
+
+    .hero-text{
+
+        width:100%;
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+    }
+
+    .hero-photo-wrapper{
+
+        width:310px;
+
+        height:400px;
+    }
+
+    .about-container{
+
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .talent-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .pageant-container{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even){
+
+        width:100%;
+
+        margin-left:0;
+
+        padding-left:50px;
+
+        padding-right:0;
+    }
+
+    .timeline::before{
+
+        left:10px;
+    }
+
+    .timeline-dot,
+    .timeline-item:nth-child(even)
+    .timeline-dot{
+
+        left:1px;
+
+        right:auto;
+    }
+
+    .gallery-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    section{
+
+        padding:
+            80px 6%;
+    }
+
+    .hero{
+
+        padding-top:125px;
+    }
+
+    .hero h1{
+
+        font-size:50px;
+    }
+
+    .hero-title{
+
+        font-size:19px;
+    }
+
+    .hero-description{
+
+        font-size:14px;
+    }
+
+    .hero-photo-wrapper{
+
+        width:270px;
+
+        height:350px;
+    }
+
+    .badge-top{
+
+        right:-15px;
+
+        top:20px;
+
+        font-size:12px;
+    }
+
+    .badge-bottom{
+
+        left:-15px;
+
+        bottom:20px;
+
+        font-size:12px;
+    }
+
+    .info-grid,
+    .stats-grid,
+    .talent-grid,
+    .gallery-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .crown{
+
+        font-size:100px;
+    }
+
+    .title-card h3{
+
+        font-size:32px;
+    }
+
+    .gallery-item{
+
+        height:280px;
+    }
+
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes crownFloat{
+
+    0%,100%{
+
+        transform:
+            translateY(0);
+    }
+
+    50%{
+
+        transform:
+            translateY(-12px);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-crown">
+            👑
+        </div>
+
+        <h2>
+            Jasmine Antonio
+        </h2>
+
+        <div class="loader-bar">
+
+            <div class="loader-progress"></div>
+
+        </div>
+
+        <p>
+            Loading my story...
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- SCROLL PROGRESS -->
+
+<div id="scrollProgress"></div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <div class="logo">
+
+        Jasmine<span>.</span>
+
+    </div>
+
+
+    <ul
+        class="nav-links"
+        id="navLinks">
+
+        <li>
+            <a href="#home">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#about">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="#achievements">
+                Achievements
+            </a>
+        </li>
+
+        <li>
+            <a href="#talents">
+                Talents
+            </a>
+        </li>
+
+        <li>
+            <a href="#pageant">
+                Pageantry
+            </a>
+        </li>
+
+        <li>
+            <a href="#leadership">
+                Leadership
+            </a>
+        </li>
+
+        <li>
+            <a href="#gallery">
+                Gallery
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="nav-controls">
+
+        <button
+            class="icon-button"
+            id="themeButton"
+            onclick="toggleTheme()">
+
+            ☾
+
+        </button>
+
+
+        <button
+            class="icon-button menu-button"
+            onclick="toggleMenu()">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="home">
+
+
+    <div class="hero-decoration decoration-one"></div>
+
+    <div class="hero-decoration decoration-two"></div>
+
+
+    <!-- HERO TEXT -->
+
+    <div class="hero-text reveal">
+
+
+        <div class="eyebrow">
+
+            Welcome to my portfolio ✨
+
+        </div>
+
+
+        <h1>
+
+            Hi, I'm
+
+            <span>
+                Jasmine Antonio
+            </span>
+
+        </h1>
+
+
+        <div class="hero-title">
+
+            Grade 10 Student
+            • Young Leader
+            • Achiever
+
+        </div>
+
+
+        <p class="hero-description">
+
+            I am a
+
+            <strong>
+                consistent honor student
+            </strong>,
+
+            school journalist, pageant enthusiast,
+            volleyball player, dancer, singer,
+            Girl Scout, and member of the
+            <strong>
+                Allied Youth Leaders (AYL)
+            </strong>.
+
+            <br><br>
+
+            I believe that every experience is an
+            opportunity to grow, inspire others,
+            and become the best version of myself.
+
+            <br><br>
+
+            I am passionate about
+
+            <span
+                class="typing"
+                id="typingText">
+            </span>
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+            <a
+                href="#about"
+                class="btn btn-primary">
+
+                ✨
+
+                Discover My Story
+
+            </a>
+
+
+            <a
+                href="#achievements"
+                class="btn btn-outline">
+
+                🏆
+
+                My Achievements
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         HERO PHOTO
+    ================================================= -->
+
+    <div class="hero-photo-wrapper reveal">
+
+
+        <div class="photo-ring-one"></div>
+
+        <div class="photo-ring-two"></div>
+
+
+        <div class="photo-container">
+
+
+            <!-- =================================================
+                 YOUR IMAGE GOES HERE
+                 
+                 IMPORTANT:
+                 
+                 If your image is named jasmine.jpg,
+                 leave this exactly as:
+                 
+                 src="jasmine.jpg"
+                 
+                 If your image is named:
+                 JasminePhoto.png
+                 
+                 change it to:
+                 
+                 src="JasminePhoto.png"
+            ================================================= -->
+
+            <img
+                src="jas.jpg"
+                alt="Jasmine Antonio"
+                class="hero-photo">
+
+
+            <div class="photo-overlay"></div>
+
+
+            <div class="photo-caption">
+
+                <h3>
+                    Jasmine Antonio
+                </h3>
+
+                <p>
+                    Ms. Binibini 2025 👑
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="floating-badge badge-top">
+
+            🎓 Honor Student
+
+        </div>
+
+
+        <div class="floating-badge badge-bottom">
+
+            👑 Titleholder
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="about"
+    id="about">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            Get to Know Me
+
+        </span>
+
+
+        <h2>
+
+            About Me
+
+        </h2>
+
+
+        <p>
+
+            A young student with big dreams,
+            multiple passions, and a heart
+            for learning and leadership.
+
+        </p>
+
+    </div>
+
+
+    <div class="about-container">
+
+
+        <div class="about-text reveal">
+
+
+            <p>
+
+                I am
+                <strong>
+                    Jasmine Antonio
+                </strong>,
+
+                a Grade 10 student who believes
+                that education is one of the
+                strongest foundations for
+                achieving dreams.
+
+            </p>
+
+
+            <p>
+
+                I am proud to be a
+                <strong>
+                    consistent honor student
+                </strong>.
+
+                Maintaining academic excellence
+                while participating in extracurricular
+                activities has taught me the value
+                of time management, discipline,
+                perseverance, and responsibility.
+
+            </p>
+
+
+            <p>
+
+                Outside the classroom, I love
+                exploring different talents and
+                experiences. I enjoy
+                <strong>
+                    journalism, pageantry,
+                    volleyball, dancing, and singing
+                </strong>.
+
+                These activities allow me to
+                express myself while developing
+                confidence and new skills.
+
+            </p>
+
+
+            <p>
+
+                I am also part of the
+                <strong>
+                    Girl Scouts
+                </strong>
+
+                and the
+                <strong>
+                    Allied Youth Leaders (AYL)
+                </strong>.
+
+                Through these organizations,
+                I continue to learn about
+                leadership, teamwork, service,
+                and responsibility.
+
+            </p>
+
+
+            <div class="quote">
+
+                "Success is not only about
+                reaching the top; it is about
+                becoming someone who inspires
+                others along the way."
+
+            </div>
+
+
+        </div>
+
+
+        <div class="info-grid reveal">
+
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    🎓
+                </div>
+
+                <strong>
+                    Education
+                </strong>
+
+                <span>
+                    Grade 10 Student
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    🏅
+                </div>
+
+                <strong>
+                    Academic
+                </strong>
+
+                <span>
+                    Consistent Honor Student
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    📰
+                </div>
+
+                <strong>
+                    Journalism
+                </strong>
+
+                <span>
+                    School Journalist
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    👑
+                </div>
+
+                <strong>
+                    Pageantry
+                </strong>
+
+                <span>
+                    Ms. Binibini 2025
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    🏐
+                </div>
+
+                <strong>
+                    Sports
+                </strong>
+
+                <span>
+                    Volleyball Player
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    🤝
+                </div>
+
+                <strong>
+                    Leadership
+                </strong>
+
+                <span>
+                    AYL Member
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACHIEVEMENTS
+===================================================== -->
+
+<section
+    class="achievements"
+    id="achievements">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            My Journey
+
+        </span>
+
+
+        <h2>
+
+            Achievements & Highlights
+
+        </h2>
+
+
+        <p>
+
+            Every achievement represents
+            dedication, courage, and a
+            willingness to grow.
+
+        </p>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                🎓
+            </div>
+
+            <div class="stat-number">
+                10
+            </div>
+
+            <p>
+                Grade Level
+            </p>
+
+        </div>
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                👑
+            </div>
+
+            <div class="stat-number">
+                2nd
+            </div>
+
+            <p>
+                Pageant Title
+            </p>
+
+        </div>
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div class="stat-number">
+                2025
+            </div>
+
+            <p>
+                Ms. Binibini
+            </p>
+
+        </div>
+
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                🌟
+            </div>
+
+            <div class="stat-number">
+                7+
+            </div>
+
+            <p>
+                Skills & Activities
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TALENTS
+===================================================== -->
+
+<section
+    class="talents"
+    id="talents">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            My Passions
+
+        </span>
+
+
+        <h2>
+
+            Talents & Interests
+
+        </h2>
+
+
+        <p>
+
+            The things I love doing help me
+            discover my strengths and express
+            who I am.
+
+        </p>
+
+    </div>
+
+
+    <div class="talent-grid">
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                🏐
+            </div>
+
+            <h3>
+                Volleyball
+            </h3>
+
+            <p>
+
+                Volleyball teaches me teamwork,
+                discipline, perseverance,
+                communication, and the importance
+                of trusting my teammates.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                💃
+            </div>
+
+            <h3>
+                Dancing
+            </h3>
+
+            <p>
+
+                Dancing allows me to express my
+                emotions, creativity, energy,
+                and confidence through movement
+                and performance.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                🎤
+            </div>
+
+            <h3>
+                Singing
+            </h3>
+
+            <p>
+
+                Singing is one of the ways I
+                express myself. Music helps me
+                build confidence and connect
+                with other people.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                📰
+            </div>
+
+            <h3>
+                Journalism
+            </h3>
+
+            <p>
+
+                As a school journalist, I enjoy
+                writing, researching, gathering
+                information, and sharing meaningful
+                stories.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                👑
+            </div>
+
+            <h3>
+                Pageantry
+            </h3>
+
+            <p>
+
+                Pageantry has helped me develop
+                confidence, communication skills,
+                stage presence, elegance,
+                and purpose.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                🌟
+            </div>
+
+            <h3>
+                Leadership
+            </h3>
+
+            <p>
+
+                I enjoy opportunities that allow
+                me to work with others, serve my
+                community, and develop my
+                leadership abilities.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JOURNALISM
+===================================================== -->
+
+<section class="journalism">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            My Voice
+
+        </span>
+
+
+        <h2>
+
+            School Journalism
+
+        </h2>
+
+    </div>
+
+
+    <div class="journalism-container reveal">
+
+
+        <p>
+
+            Being a school journalist is an
+            important part of my student journey.
+            Journalism gives me an opportunity
+            to tell stories, share information,
+            and communicate ideas that matter.
+
+        </p>
+
+
+        <p>
+
+            Through journalism, I continue to
+            develop my writing, research,
+            interviewing, observation,
+            communication, and critical-thinking
+            skills.
+
+        </p>
+
+
+        <div class="skills">
+
+
+            <span class="skill">
+                ✍️ Writing
+            </span>
+
+
+            <span class="skill">
+                🔎 Research
+            </span>
+
+
+            <span class="skill">
+                📰 News Writing
+            </span>
+
+
+            <span class="skill">
+                🎤 Interviewing
+            </span>
+
+
+            <span class="skill">
+                📸 Photography
+            </span>
+
+
+            <span class="skill">
+                💡 Creativity
+            </span>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGEANTRY
+===================================================== -->
+
+<section
+    class="pageant"
+    id="pageant">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            Confidence • Grace • Purpose
+
+        </span>
+
+
+        <h2>
+
+            My Pageant Journey
+
+        </h2>
+
+    </div>
+
+
+    <div class="pageant-container">
+
+
+        <div class="crown-area reveal">
+
+            <div class="crown">
+                👑
+            </div>
+
+        </div>
+
+
+        <div class="title-card reveal">
+
+
+            <span class="title-year">
+
+                MY SECOND TITLE • 2025
+
+            </span>
+
+
+            <h3>
+
+                Ms. Binibini 2025
+
+            </h3>
+
+
+            <p>
+
+                One of the most memorable milestones
+                in my journey is earning my second
+                pageant title as
+                <strong>
+                    Ms. Binibini 2025
+                </strong>.
+
+            </p>
+
+
+            <br>
+
+
+            <p>
+
+                For me, pageantry is more than beauty
+                and wearing a crown. It is about
+                confidence, character, communication,
+                discipline, responsibility, and purpose.
+
+            </p>
+
+
+            <br>
+
+
+            <p>
+
+                Every experience on stage has taught
+                me to believe in myself, speak with
+                confidence, respect others, and
+                remain humble regardless of achievements.
+
+            </p>
+
+
+            <br>
+
+
+            <p>
+
+                I believe a true titleholder carries
+                her crown not only with elegance,
+                but also with kindness, humility,
+                and a desire to inspire others.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LEADERSHIP
+===================================================== -->
+
+<section
+    class="leadership"
+    id="leadership">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            My Experiences
+
+        </span>
+
+
+        <h2>
+
+            My Growth Journey
+
+        </h2>
+
+
+        <p>
+
+            Each experience has helped shape
+            the person I am becoming.
+
+        </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <h3>
+                    🎓 Academic Excellence
+                </h3>
+
+                <p>
+
+                    As a consistent honor student,
+                    I continue to value education
+                    and strive for excellence in
+                    my academic journey.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <h3>
+                    📰 School Journalism
+                </h3>
+
+                <p>
+
+                    Becoming a school journalist
+                    gave me the opportunity to improve
+                    my writing, communication,
+                    research, and storytelling abilities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <h3>
+                    👑 Pageantry
+                </h3>
+
+                <p>
+
+                    My pageant experiences strengthened
+                    my confidence, stage presence,
+                    communication, and ability
+                    to represent others.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <h3>
+                    🏐 Sports & Performing Arts
+                </h3>
+
+                <p>
+
+                    Volleyball, dancing, and singing
+                    allow me to explore my creativity,
+                    teamwork, passion, and determination.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <h3>
+                    ⛺ Girl Scouts
+                </h3>
+
+                <p>
+
+                    Being a Girl Scout teaches me
+                    preparedness, teamwork, service,
+                    responsibility, and leadership.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <h3>
+                    🤝 Allied Youth Leaders
+                </h3>
+
+                <p>
+
+                    As a member of AYL, I have
+                    opportunities to participate in
+                    youth leadership, collaboration,
+                    service, and community activities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ORGANIZATIONS
+===================================================== -->
+
+<section class="organizations">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            Leadership & Service
+
+        </span>
+
+
+        <h2>
+
+            Organizations
+
+        </h2>
+
+    </div>
+
+
+    <div class="talent-grid">
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                ⛺
+            </div>
+
+            <h3>
+                Girl Scouts
+            </h3>
+
+            <p>
+
+                Being a Girl Scout helps me develop
+                responsibility, leadership, teamwork,
+                preparedness, confidence, and a
+                spirit of service.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                🤝
+            </div>
+
+            <h3>
+                Allied Youth Leaders
+            </h3>
+
+            <p>
+
+                Being part of AYL allows me to
+                participate in youth leadership,
+                teamwork, collaboration, service,
+                and activities that encourage young
+                people to become responsible leaders.
+
+            </p>
+
+        </div>
+
+
+        <div class="talent-card reveal">
+
+            <div class="talent-icon">
+                🌱
+            </div>
+
+            <h3>
+                Future Leader
+            </h3>
+
+            <p>
+
+                My goal is to continue learning,
+                serving, improving myself, and
+                using my skills to make a positive
+                difference in my school and community.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section
+    class="gallery"
+    id="gallery">
+
+
+    <div class="section-header reveal">
+
+
+        <span class="section-label">
+
+            Memories
+
+        </span>
+
+
+        <h2>
+
+            My Gallery
+
+        </h2>
+
+
+        <p>
+
+            Moments that represent the different
+            parts of my journey.
+
+        </p>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+
+        <!-- PAGEANT -->
+
+        <div class="gallery-item reveal">
+
+            <!--
+            TO ADD YOUR PAGEANT PHOTO:
+
+            <img
+                src="pageant.jpg"
+                alt="Jasmine Pageant Photo">
+            -->
+
+            <div class="gallery-placeholder">
+
+                <div>
+                    👑
+                </div>
+
+                <p>
+                    Add Pageant Photo
+                </p>
+
+            </div>
+
+            <div class="gallery-label">
+                Pageantry
+            </div>
+
+        </div>
+
+
+        <!-- VOLLEYBALL -->
+
+        <div class="gallery-item reveal">
+
+            <!--
+            <img
+                src="volleyball.jpg"
+                alt="Jasmine Volleyball Photo">
+            -->
+
+            <div class="gallery-placeholder">
+
+                <div>
+                    🏐
+                </div>
+
+                <p>
+                    Add Volleyball Photo
+                </p>
+
+            </div>
+
+            <div class="gallery-label">
+                Volleyball
+            </div>
+
+        </div>
+
+
+        <!-- JOURNALISM -->
+
+        <div class="gallery-item reveal">
+
+            <!--
+            <img
+                src="journalism.jpg"
+                alt="Jasmine Journalism Photo">
+            -->
+
+            <div class="gallery-placeholder">
+
+                <div>
+                    📰
+                </div>
+
+                <p>
+                    Add Journalism Photo
+                </p>
+
+            </div>
+
+            <div class="gallery-label">
+                Journalism
+            </div>
+
+        </div>
+
+
+        <!-- DANCING -->
+
+        <div class="gallery-item reveal">
+
+            <!--
+            <img
+                src="dancing.jpg"
+                alt="Jasmine Dancing Photo">
+            -->
+
+            <div class="gallery-placeholder">
+
+                <div>
+                    💃
+                </div>
+
+                <p>
+                    Add Dance Photo
+                </p>
+
+            </div>
+
+            <div class="gallery-label">
+                Dancing
+            </div>
+
+        </div>
+
+
+        <!-- SINGING -->
+
+        <div class="gallery-item reveal">
+
+            <!--
+            <img
+                src="singing.jpg"
+                alt="Jasmine Singing Photo">
+            -->
+
+            <div class="gallery-placeholder">
+
+                <div>
+                    🎤
+                </div>
+
+                <p>
+                    Add Singing Photo
+                </p>
+
+            </div>
+
+            <div class="gallery-label">
+                Singing
+            </div>
+
+        </div>
+
+
+        <!-- GIRL SCOUT -->
+
+        <div class="gallery-item reveal">
+
+            <!--
+            <img
+                src="girlscout.jpg"
+                alt="Jasmine Girl Scout Photo">
+            -->
+
+            <div class="gallery-placeholder">
+
+                <div>
+                    ⛺
+                </div>
+
+                <p>
+                    Add Girl Scout Photo
+                </p>
+
+            </div>
+
+            <div class="gallery-label">
+                Girl Scouts
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="contact"
+    id="contact">
+
+
+    <div class="contact-content reveal">
+
+
+        <div class="section-header">
+
+
+            <span class="section-label">
+
+                Let's Connect
+
+            </span>
+
+
+            <h2>
+
+                Thank You for Visiting
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Thank you for taking the time to visit
+            my portfolio. I am always excited to
+            learn, grow, meet new people, discover
+            new opportunities, and create meaningful
+            experiences.
+
+        </p>
+
+
+        <div class="contact-button">
+
+            <!-- CHANGE YOUR EMAIL HERE -->
+
+            <a
+                href="mailto:your-email@example.com"
+                class="btn btn-primary">
+
+                💌
+
+                Send Me a Message
+
+            </a>
+
+        </div>
+
+
+        <div class="socials">
+
+
+            <!-- CHANGE # TO YOUR SOCIAL MEDIA LINKS -->
+
+
+            <a
+                href="#"
+                class="social"
+                title="Facebook">
+
+                f
+
+            </a>
+
+
+            <a
+                href="#"
+                class="social"
+                title="Instagram">
+
+                ◎
+
+            </a>
+
+
+            <a
+                href="#"
+                class="social"
+                title="TikTok">
+
+                ♪
+
+            </a>
+
+
+            <a
+                href="#"
+                class="social"
+                title="Email">
+
+                ✉
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <p>
+
+        ©
+        <span id="year"></span>
+
+        <strong>
+            Jasmine Antonio
+        </strong>
+
+    </p>
+
+
+    <p style="margin-top:8px;">
+
+        Grade 10 Student
+        • Journalist
+        • Titleholder
+        • Athlete
+        • Performer
+        • Young Leader
+
+    </p>
+
+
+    <p style="margin-top:12px;">
+
+        Made with
+
+        <span class="heart">
+            ♥
+        </span>
+
+        and dreams.
+
+    </p>
+
+
+</footer>
+
+
+<!-- BACK TO TOP -->
+
+<button id="backToTop">
+
+    ↑
+
+</button>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        setTimeout(
+            function(){
+
+                document
+                    .getElementById("loader")
+                    .classList
+                    .add("hide");
+
+            },
+            1800
+        );
+
+    }
+);
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document
+    .getElementById("year")
+    .textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("navLinks")
+        .classList
+        .toggle("active");
+
+}
+
+
+/* CLOSE MOBILE MENU */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(
+        function(link){
+
+            link.addEventListener(
+                "click",
+                function(){
+
+                    document
+                        .getElementById("navLinks")
+                        .classList
+                        .remove("active");
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+function toggleTheme(){
+
+    document
+        .body
+        .classList
+        .toggle("dark");
+
+
+    const button =
+        document
+            .getElementById("themeButton");
+
+
+    if(
+        document
+            .body
+            .classList
+            .contains("dark")
+    ){
+
+        button.textContent = "☀";
+
+        localStorage.setItem(
+            "jasmineTheme",
+            "dark"
+        );
+
+    }else{
+
+        button.textContent = "☾";
+
+        localStorage.setItem(
+            "jasmineTheme",
+            "light"
+        );
+
+    }
+
+}
+
+
+/* LOAD SAVED THEME */
+
+if(
+    localStorage.getItem(
+        "jasmineTheme"
+    ) === "dark"
+){
+
+    document
+        .body
+        .classList
+        .add("dark");
+
+    document
+        .getElementById("themeButton")
+        .textContent = "☀";
+
+}
+
+
+/* =========================================================
+   TYPING EFFECT
+========================================================= */
+
+const typingElement =
+    document.getElementById(
+        "typingText"
+    );
+
+
+const words = [
+
+    "journalism.",
+    "pageantry.",
+    "volleyball.",
+    "dancing.",
+    "singing.",
+    "leadership.",
+    "making a difference."
+
+];
+
+
+let wordIndex = 0;
+
+let characterIndex = 0;
+
+let deleting = false;
+
+
+function typeEffect(){
+
+    const currentWord =
+        words[wordIndex];
+
+
+    if(!deleting){
+
+        typingElement.textContent =
+            currentWord.substring(
+                0,
+                characterIndex + 1
+            );
+
+        characterIndex++;
+
+
+        if(
+            characterIndex ===
+            currentWord.length
+        ){
+
+            deleting = true;
+
+            setTimeout(
+                typeEffect,
+                1300
+            );
+
+            return;
+
+        }
+
+    }else{
+
+        typingElement.textContent =
+            currentWord.substring(
+                0,
+                characterIndex - 1
+            );
+
+        characterIndex--;
+
+
+        if(
+            characterIndex === 0
+        ){
+
+            deleting = false;
+
+            wordIndex++;
+
+
+            if(
+                wordIndex ===
+                words.length
+            ){
+
+                wordIndex = 0;
+
+            }
+
+        }
+
+    }
+
+
+    const speed =
+        deleting
+        ? 60
+        : 100;
+
+
+    setTimeout(
+        typeEffect,
+        speed
+    );
+
+}
+
+
+typeEffect();
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target
+                            .classList
+                            .add("active");
+
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold:.12
+        }
+
+    );
+
+
+revealElements.forEach(
+    function(element){
+
+        revealObserver
+            .observe(element);
+
+    }
+);
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const scrollTop =
+            document.documentElement
+                .scrollTop;
+
+
+        const scrollHeight =
+            document.documentElement
+                .scrollHeight
+            -
+            document.documentElement
+                .clientHeight;
+
+
+        const progress =
+            (
+                scrollTop /
+                scrollHeight
+            ) * 100;
+
+
+        document
+            .getElementById(
+                "scrollProgress"
+            )
+            .style
+            .width =
+            progress + "%";
+
+    }
+);
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+const backToTop =
+    document.getElementById(
+        "backToTop"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        if(
+            window.scrollY > 500
+        ){
+
+            backToTop
+                .classList
+                .add("show");
+
+        }else{
+
+            backToTop
+                .classList
+                .remove("show");
+
+        }
+
+    }
+);
+
+
+backToTop.addEventListener(
+    "click",
+    function(){
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================================================
+   SMOOTH LINKS
+========================================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        function(anchor){
+
+            anchor.addEventListener(
+                "click",
+                function(event){
+
+                    const target =
+                        document.querySelector(
+                            this.getAttribute(
+                                "href"
+                            )
+                        );
+
+
+                    if(target){
+
+                        event.preventDefault();
+
+                        target.scrollIntoView({
+
+                            behavior:"smooth"
+
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CARD TILT EFFECT
+========================================================= */
+
+const cards =
+    document.querySelectorAll(
+        ".talent-card, .stat-card, .info-box"
+    );
+
+
+cards.forEach(
+    function(card){
+
+        card.addEventListener(
+            "mousemove",
+            function(event){
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+
+                const centerX =
+                    rect.width / 2;
+
+
+                const centerY =
+                    rect.height / 2;
+
+
+                const rotateX =
+                    (
+                        (y - centerY) /
+                        centerY
+                    ) * -2;
+
+
+                const rotateY =
+                    (
+                        (x - centerX) /
+                        centerX
+                    ) * 2;
+
+
+                card.style.transform =
+
+                    `perspective(800px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)
+                     translateY(-6px)`;
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            function(){
+
+                card.style.transform =
+                    "";
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD SHORTCUT
+   D = DARK MODE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key.toLowerCase()
+            === "d"
+        ){
+
+            toggleTheme();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   WELCOME CONSOLE MESSAGE
+========================================================= */
+
+console.log(
+    "%cWelcome to Jasmine Antonio's Portfolio 👑",
+    "color:#e83e8c;font-size:18px;font-weight:bold;"
+);
+
+console.log(
+    "Grade 10 Student • Journalist • Titleholder • Athlete • Performer • Young Leader"
+);
+
+
+</script>
+
+</body>
+</html>
+```
